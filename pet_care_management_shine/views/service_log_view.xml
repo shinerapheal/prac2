@@ -1,0 +1,257 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+		<record id="servicelog_form_view" model="ir.ui.view">
+			<field name="name">service.log.form</field>
+			<field name="model">service.log</field>
+			<field name="arch" type="xml">
+				<form>
+				
+			
+				
+			
+				
+					
+					
+					<sheet>
+					
+						<group>
+						
+						
+							<group>
+							
+								
+								<field name="customer" string="Customer" options="{'no_create': True,'no_create_edit': True}" widget="many2one_tags" domain="[('petowner','=','True')]" required="1"/>
+								<field name="pet" string="Pet"  widget="many2one_tags" required="1" />
+								<field name="current_datetime" string="Current Time" />
+								<field name="service" string="Service" options="{'no_create': True,'no_create_edit': True}" widget="many2one_tags" domain="[('is_pet_service','=','True')]" required="1"/>
+								<field name="total_time_assigned" string="Time assigned"  required="1"/>
+							
+								
+								
+								
+							</group>
+							
+						
+							
+						</group>
+						
+						
+						<notebook>
+								<page string="Employee" required="1">
+									
+										
+								
+										<field name="service_log_ids" nolable="1">
+											<list editable="bottom" >
+												<field name="employee_id" required="1"/>
+												<field name="work_done" required="1"/>
+												<field name="status" widget="selection" required="1"/>
+												<field name="time_spend"  required="1"/>
+												
+											</list>
+										</field>
+										
+											<kanban class="o_kanban_mobile">
+										
+											</kanban>-->
+										
+								</page>
+								
+								
+								
+						</notebook>		
+						<br></br>
+						<br></br>
+						<br></br>
+							<div class="o_total_box" style="position: absolute; bottom: 50px; right: 20px;">
+							<button 
+							name="%(pet_care_management_shine.action_service_feedback_wizard)d" 
+							type="action" 
+							class="oe_highlight" 
+							string="Send Msg" 
+							/>
+							</div>>
+						
+						<div class="o_total_box" style="position: absolute; bottom: 10px; right: 20px;">
+                  			  <label for="total_hours_spend">Total Amount:</label>
+								<field name="total_hours_spend"/>
+              			 </div>
+				
+					</sheet>
+					
+				</form> 
+			</field>
+
+		</record>
+
+ 		<record id="service_log_list_view" model="ir.ui.view">
+			<field name="name">service.log.list</field>
+			<field name="model">service.log</field>
+			<field name="arch" type='xml'>
+				<list>
+					
+					
+					
+								<field name="customer" string="Customer"/>
+								<field name="pet" string="Pet"/>
+								<field name="current_datetime" string="Current Date"/>
+								<field name="service" string="Service" />
+								<field name="total_time_assigned" string="Total Time" />
+								<field name="service_log_ids"/>
+					
+				</list>
+			</field>
+		</record>
+		
+	
+		
+		
+		
+		<record id="servicelog_search_view" model="ir.ui.view">
+			<field name="name">service.log.search</field>
+			<field name="model">service.log</field>
+			<field name="arch" type='xml'>
+			<search>
+			
+			
+								<field name="customer" string="Customer"/>
+								<field name="pet" string="Pet"/>
+								<filter name="group_by_customer" string=" Group Customer" context="{'group_by':'customer'}"/>
+								
+			
+			
+			</search>
+				
+			</field>
+		</record>
+
+		<record id="servivelog_graph_view" model="ir.ui.view">
+			<field name="name">service.log.graph</field>
+			<field name="model">service.log</field>
+			<field name="arch" type='xml'>
+				<graph string="Hours Spend" type="bar">
+					
+					<field name="customer" type="bar" />
+					
+					
+					
+					
+				</graph>
+			</field>
+		</record>
+		
+		
+		<record id="servivelog_kanban_view" model="ir.ui.view">
+			<field name="name">service.log.kanban</field>
+			<field name="model">service.log</field>
+			<field name="arch" type='xml'>
+			
+				     <kanban class="o_kanban_mobile" sample="1" quick_create="false">
+	                <field name="customer"/>
+	                <field name="pet"/>
+	                <field name="current_datetime"/>
+	                 <field name="service"/>
+	                
+	                <templates>
+	                    <t t-name="kanban-box">
+	                        <div t-attf-class="oe_kanban_card oe_kanban_global_click">
+	                        
+	                        
+
+	                        
+	                        	<div style="display: flex; justify-content: space-between; align-items: flex-start;">
+    			
+							    <div style="flex: 1; padding-right: 20px;">
+							        <div class="o_kanban_record_headings mt4">
+							            <strong class="o_kanban_record_title">
+							                <span t-out="record.customer.value"/>
+							            </strong>
+							        </div>
+							        <div class="o_kanban_top_right" style="font-size: 14px; color: #555;">
+							            <span><t t-out="record.pet.value"/></span>
+							        </div>
+							        
+							         <div class="o_kanban_top_right" style="font-size: 14px; color: #555;">
+							            <span><t t-out="record.service.value"/></span>
+							        </div>
+							
+							        <div class="o_kanban_record_bottom" style="margin-top: 8px;">
+							            <div class="oe_kanban_bottom_left text-muted">
+							                <span><t t-out="record.current_datetime.value"/></span>
+							                 
+							            </div>
+							            
+							            
+							            
+							
+						    </div>
+						</div>
+
+	                            
+	                        </div>
+	                        </div>
+	                    </t>
+	                </templates>
+	            </kanban>
+			
+			
+			
+				
+			</field>
+		</record>
+		
+		
+		
+		
+		 <record id="servicelog_caleneder_view" model="ir.ui.view">
+            <field name="name">service.log.calendar.view</field>
+            <field name="model">service.log</field>
+            <field name="arch" type="xml">
+                <calendar string="calendar" create="0" mode="month" date_start="current_datetime" color="customer" hide_time="true" event_limit="5">
+                    <field name="customer" />
+                    <field name="pet" />
+                    <field name="service" />
+                    
+                </calendar>
+            </field>
+        </record>
+		
+		
+		
+		<record id="servicelog_pivot_view" model="ir.ui.view">
+					        <field name="name">service.log.pivot.view</field>
+					        <field name="model">service.log</field>
+					        <field name="arch" type="xml">
+					            <pivot string="Service Analysis">
+					               
+					                <field name="pet" type="row"/>
+					                
+					               
+					                <field name="customer" type="col"/>
+					                
+					              
+					                <field name="total_time_assigned" type="measure"/>
+					                
+					                
+					            </pivot>
+					        </field>
+					    </record>
+	    
+
+		
+		<record id="action_servicelogg" model="ir.actions.act_window">
+			<field name="name">Service Log</field>
+			<field name="res_model">service.log</field>
+			<field name="view_mode">list,form,pivot,calendar,graph,kanban</field>
+			
+		</record> 
+		
+	
+		
+		
+	</data>
+</odoo>
+
+
+

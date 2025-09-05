@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+	
+	
+		
+		<record id="res_partner_list_inherit" model="ir.ui.view">
+			<field name="name">res.partner.list.inherit</field>
+			<field name="model">res.partner</field>
+			<field name="inherit_id" ref="base.view_partner_tree"/>
+			<field name="arch" type="xml">
+				<xpath expr="//list" position="inside">
+					<field name="pet_ids"/>
+					
+				</xpath>
+			
+			
+				
+			</field>
+		</record>
+		
+		<record id="res_partner_form_inherit" model="ir.ui.view">
+			<field name="name">res.partner.form.inherit</field>
+			<field name="model">res.partner</field>
+			<field name="inherit_id" ref="base.view_partner_form"/>
+			<field name="arch" type="xml">
+			
+						<xpath expr="//notebook" position="inside">
+			            
+					            <page string="Pet Details">
+					               
+					                    <field name="pet_ids" options="{'no_create': True,'no_create_edit': True}" />
+					                
+					            </page>
+			      	  </xpath>
+					<xpath expr= "//field[@name='vat']" position="after">
+						<field name="petowner" />
+					
+					</xpath>
+					
+					
+					<xpath expr= "//field[@name='petowner']" position="after">
+						<field name="loyalty_points" readonly='True'/>
+					
+					</xpath>
+					
+					
+					<xpath expr= "//field[@name='email']" position="attributes">
+						<attribute name="required">True</attribute>
+					
+					</xpath>
+					
+					<xpath expr= "//field[@name='phone']" position="attributes">
+						<attribute name="required">True</attribute>
+					
+					</xpath>
+					
+						<xpath expr= "//field[@name='mobile']" position="attributes">
+						<attribute name="required">True</attribute>
+					
+					</xpath>
+			
+				
+			</field>
+		</record>
+		
+		
+		
+		
+		<record id="pet_person_search_inherit" model="ir.ui.view">
+			<field name="name">res.partner.search.inherit</field>
+			<field name="model">res.partner</field>
+			<field name="inherit_id" ref="base.view_res_partner_filter"/>
+			<field name="arch" type="xml">
+				<xpath expr="//search" position="inside">
+					<field  name="pet_ids" />
+					<field name="petowner" />
+					<filter name="pet_ids" string="PetName" domain="[('pet_ids', '=', 'rocky')]"/>
+					
+					
+					<filter string="This Month" name="create_date" separator="1" domain="[('create_date', '&lt;=', ((context_today()+relativedelta(months=1, day=1, days=-1)).strftime('%Y-%m-%d'))),
+					('create_date', '&gt;=', ((context_today()-relativedelta(months=0)).strftime('%Y-%m-%d')))]"/>
+					<filter string="Today" name="create_date" separator="1"  domain="[('create_date', '&lt;=', context_today().strftime('%Y-%m-%d'))]"/>
+					
+				</xpath>
+			</field>
+		</record>
+		
+		
+		 <record id="contacts.action_contacts" model="ir.actions.act_window">
+           
+            <field name="context">{'search_default_petowner': "True"}</field>
+          
+        </record>
+		
+		
+	</data>
+</odoo>

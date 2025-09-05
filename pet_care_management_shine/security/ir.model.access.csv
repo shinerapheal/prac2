@@ -1,0 +1,25 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+
+
+access_pet_pet,access_pet_pet,model_pet_pet,pet_care_management_shine.group_pet_care_admin,1,1,1,1
+
+
+access_pet,access_pet_pet,model_pet_pet,pet_care_management_shine.group_pet_user,1,0,0,0
+
+access_bulk_order_line,access_bulk_order_line,model_bulk_order_line,base.group_user,1,1,1,1
+
+access_sale_order_admin,Access to Sale Order (Admin),sale.model_sale_order,pet_care_management_shine.group_pet_care_admin,1,1,1,1
+access_user,Access to Sale Order (User),sale.model_sale_order,pet_care_management_shine.group_pet_user,1,0,0,0
+
+access_product,access_product_template,model_product_template,pet_care_management_shine.group_pet_user,1,0,0,0
+
+access_service_log,access_service_log,model_service_log,base.group_user,1,1,1,1
+access_service_log_line,access_service_log_line,model_service_log_line,base.group_user,1,1,1,1
+access_servicelog_wizard,access_servicelog_wizard,model_servicelog_wizard,base.group_user,1,1,1,1
+
+access_sale_wizard,access_sale_wizard,model_sale_wizard,base.group_user,1,1,1,1
+
+
+access_product_template,access_product_template,model_product_template,base.group_portal,1,1,1,0
+
+

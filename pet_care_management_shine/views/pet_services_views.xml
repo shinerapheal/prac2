@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+	
+	
+		
+		<record id="product_template_list_inherit" model="ir.ui.view">
+			<field name="name">product.template.list.inherit</field>
+			<field name="model">product.template</field>
+			<field name="inherit_id" ref="product.product_template_tree_view"/>
+			<field name="arch" type="xml">
+				<xpath expr="//list" position="inside">
+					<field name="description" />
+					<field name="available_slotes" />
+					<field name="is_pet_service" />
+			
+			</xpath>
+				
+			</field>
+		</record>
+		
+		<record id="product_template_form_inherit" model="ir.ui.view">
+			<field name="name">product.template.form.inherit</field>
+			<field name="model">product.template</field>
+			<field name="inherit_id" ref="product.product_template_only_form_view"/>
+			<field name="arch" type="xml">
+				<xpath expr="//field[@name='categ_id']" position="after">
+					<field name="description" string="Desc"/>
+					<field name="available_slotes" string="Slotes"/>
+					<field name="is_pet_service" />
+				</xpath>
+			
+			
+				
+			</field>
+		</record>
+		
+		
+		
+		
+		
+		<record id="pet_service_search_inherit" model="ir.ui.view">
+			<field name="name">product.template.search.inherit</field>
+			<field name="model">product.template</field>
+			<field name="inherit_id" ref="product.product_template_search_view"/>
+			<field name="arch" type="xml">
+				<xpath expr="//search" position="inside">
+					<field  name="is_pet_service" />
+					
+					
+					
+					
+				</xpath>
+			</field>
+		</record>
+		
+		
+		 <record id="sale.product_template_action" model="ir.actions.act_window">
+           
+            <field name="context">{'search_default_is_pet_service': "True"}</field>
+          
+        </record>
+		
+	
+
+		
+	</data>
+</odoo>

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+      
+
+        <!-- QWeb Report Template -->
+        <template id="petservice_report">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="o">
+                    <t t-call="web.external_layout">
+
+                        <div class="page">
+                            <!-- Report Title -->
+                            <h2 style="text-align: center;">Pet Service Report</h2>
+                            <hr/>
+                            <br></br>
+                            <br></br>
+                            <br></br>
+
+                            <!-- Report Content -->
+                            <table style="border: 1px solid black; width: 100%; text-align: left;">
+                                <thead>
+                                    <tr style="border: 1px solid black;">
+                                        <th style="border: 1px solid black; padding: 5px;">Product Name</th>
+                                        <th style="border: 1px solid black; padding: 5px;">Description</th>
+                                        <th style="border: 1px solid black; padding: 5px;">Available Slots</th>
+                                        <th style="border: 1px solid black; padding: 5px;">Is Pet Service</th>
+                                        <th style="border: 1px solid black; padding: 5px;">Sale Price</th>
+                                        <th style="border: 1px solid black; padding: 5px;">Total Sold</th>
+                                        
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td style="border: 1px solid black; padding: 5px;">
+                                            <span t-field="o.name"/>
+                                        </td>
+                                        <td style="border: 1px solid black; padding: 5px;">
+                                            <span t-field="o.description"/>
+                                        </td>
+                                        <td style="border: 1px solid black; padding: 5px;">
+                                            <span t-field="o.available_slotes"/>
+                                        </td>
+                                        <td style="border: 1px solid black; padding: 5px;">
+                                            <span t-esc="'Yes' if o.is_pet_service else 'No'"/>
+                                        </td>
+                                         <td style="border: 1px solid black; padding: 5px;">
+                                            <span t-esc="o.list_price"/>
+                                        </td>
+                                         <td style="border: 1px solid black; padding: 5px;">
+                                            <span t-esc="o.sales_count"/>
+                                        </td>
+                                         
+                                        
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                        </div>
+
+                    </t>
+                </t>
+            </t>
+        </template>
+    </data>
+</odoo>

@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+	
+	
+	
+		
+		<record id="service_booking_inherit" model="ir.ui.view">
+			<field name="name">sale.order.form.inherit</field>
+			<field name="model">sale.order</field>
+			<field name="inherit_id" ref="sale.view_order_form"/>
+			<field name="arch" type="xml">
+			
+			 <xpath expr="//field[@name='partner_id']" position="after">
+             		   
+             		   <field name="pet_id" string="Pets" required="1"/>
+               			
+         	   </xpath>
+         	   
+         	   
+         	    <xpath expr="//form/header" position="inside">
+             		   
+             		   <button 
+             		   		name="%(pet_care_management_shine.action_bulk_sale)d" 
+							type="action" 
+							class="oe_highlight" 
+							string="Bulk Sale" />
+               			
+         	   </xpath>
+         	
+         	   
+         	   
+         	
+         	    <xpath expr="//field[@name='pet_id']" position="after">
+             		   
+             		   <field name="earned_loyalty_points" string="Loyalty Points"/>
+               			
+         	   </xpath>
+				 <xpath expr="//field[@name='product_template_id']" position="attributes">
+             		   
+             		   <attribute name="options">{'no_create': True}</attribute>
+             		    <attribute name="domain">[('is_pet_service', '=', 'True')]</attribute>
+             		     <attribute name="required">1</attribute>
+         	   </xpath>
+         	    <xpath expr="//field[@name='product_uom_qty']" position="attributes">
+             		   
+             		   <attribute name="readonly">1</attribute>
+               			
+         	   </xpath>
+         	   
+         	   
+         	     <xpath expr="//field[@name='date_order']" position="attributes">
+             		   
+             		   <attribute name="readonly">1</attribute>
+               			
+         	   </xpath>
+         	   
+         	   
+         	    <xpath expr="//field[@name='partner_id']" position="attributes">
+             		   
+             		   <attribute name="options">{'no_create': True}</attribute>
+             		   <attribute name="domain">[('petowner', '=', 'True')]</attribute>
+               			
+         	   </xpath>
+			
+			
+				
+			</field>
+		</record>
+		
+		<record id="service_booking_search_inherit" model="ir.ui.view">
+			<field name="name">sale.order.search.inherit</field>
+			<field name="model">sale.order</field>
+			<field name="inherit_id" ref="sale.sale_order_view_search_inherit_sale"/>
+			<field name="arch" type="xml">
+				<xpath expr="//search" position="inside">
+					<field  name="partner_id" />
+					<filter name="partner_id" string="PetOwner" domain="[('partner_id.petowner', '=', 'True')]"/>
+					
+					
+					
+					
+				</xpath>
+			</field>
+		</record>
+		
+		
+        
+        	<record id="service_booking_list_inherit" model="ir.ui.view">
+			<field name="name">sale.order.list.inherit</field>
+			<field name="model">sale.order</field>
+			<field name="inherit_id" ref="sale.sale_order_list_upload"/>
+			<field name="arch" type="xml">
+				<xpath expr="//list" position="inside">
+					<field  name="order_line" />
+					
+					
+					
+					
+					
+				</xpath>
+				
+				<xpath expr="//field[@name='partner_id']" position="after">
+					<field  name="pet_id" />
+					
+					
+					
+					
+					
+				</xpath>
+				
+			</field>
+		</record>
+		
+		
+		 <record id="sale.action_orders" model="ir.actions.act_window">
+           
+            <field name="context">{}</field>
+          
+        </record>
+		
+		
+		
+	
+		
+		
+		
+	</data>
+</odoo>

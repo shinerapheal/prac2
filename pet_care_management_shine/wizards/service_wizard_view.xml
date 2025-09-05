@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="service_wizard_view_form" model="ir.ui.view">
+        <field name="name">service.wizard.view.form</field>
+        <field name="model">servicelog.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Send Message">
+                <group>
+                    <field name="number" />
+                    <field name="message_string" />
+                    
+                </group>
+                <footer>
+                   <button name="send_feedback" type="object" string="Send" class="oe_highlight" />
+                    <button string="Cancel" special="cancel" />
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_service_feedback_wizard" model="ir.actions.act_window">
+        <field name="name">ServiceFeedback</field>
+        <field name="res_model">servicelog.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="service_wizard_view_form" />
+        <field name="target">new</field>
+    </record>
+
+</odoo>

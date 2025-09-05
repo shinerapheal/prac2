@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <template id="pet_report">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="o">
+                    <t t-call="web.external_layout">
+                        <div class='page'>
+                            <h2>Pet Report</h2>
+                            <p><strong>Pet ID:</strong> <span t-field="o.sequence_number"/></p>
+                            <p><strong>Pet Name:</strong> <span t-field="o.name"/></p>
+                            <hr/>
+                            <table style="background-color: #FFE5B4; border: 1px solid black; width: 100%;">
+                                <thead>
+                                    <tr>
+                                        <th style="border: 1px solid black; padding: 8px;">Name</th>
+                                        <th style="border: 1px solid black; padding: 8px;">Species</th>
+                                        <th style="border: 1px solid black; padding: 8px;">Gender</th>
+                                        <th style="border: 1px solid black; padding: 8px;">Breed</th>
+                                        <th style="border: 1px solid black; padding: 8px;">Date of Birth</th>
+                                        <th style="border: 1px solid black; padding: 8px;">Age</th>
+                                        <th style="border: 1px solid black; padding: 8px;">Owner</th>
+                                        <th style="border: 1px solid black; padding: 8px;">Services</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td style="border: 1px solid black; padding: 8px;">
+                                            <span t-field="o.name"/>
+                                        </td>
+                                        <td style="border: 1px solid black; padding: 8px;">
+                                            <span t-field="dict(o.fields_get('species')['species']['selection']).get(o.species)"/>
+                                        </td>
+                                        <td style="border: 1px solid black; padding: 8px;">
+                                            <span t-field="dict(o.fields_get('gender')['gender']['selection']).get(o.gender)"/>
+                                        </td>
+                                        <td style="border: 1px solid black; padding: 8px;">
+                                            <span t-field="o.breed"/>
+                                        </td>
+                                        <td style="border: 1px solid black; padding: 8px;">
+                                            <span t-field="o.date_of_birth"/>
+                                        </td>
+                                        <td style="border: 1px solid black; padding: 8px;">
+                                            <span t-field="o.age"/>
+                                        </td>
+                                        <td style="border: 1px solid black; padding: 8px;">
+                                            <span t-field="o.owner_id.name"/>
+                                        </td>
+                                        <td style="border: 1px solid black; padding: 8px;">
+                                            <t t-foreach="o.service_ids" t-as="service">
+                                                <span t-field="service.name"/><br/>
+                                            </t>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </t>
+                </t>
+            </t>
+        </template>
+    </data>
+</odoo>

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+	
+	
+		
+		<record id="quotation_list_inherit" model="ir.ui.view">
+			<field name="name">sale.order.list.inherit</field>
+			<field name="model">sale.order</field>
+			<field name="inherit_id" ref="sale.view_quotation_tree_with_onboarding"/>
+			<field name="arch" type="xml">
+				<xpath expr="//list" position="inside">
+					<field name="earned_loyalty_points"/>
+				
+						
+			
+			</xpath>
+			
+			<xpath expr="//field[@name='partner_id']" position="after">
+					<field  name="pet_id" />
+					
+					
+					
+					
+					
+				</xpath>
+			
+			
+				
+			</field>
+		</record>
+		
+		
+		
+		<record id="sale.action_quotations_with_onboarding" model="ir.actions.act_window">
+           
+            <field name="domain">[('state', 'in', ['draft', 'sent'])]</field>
+          
+        </record>
+		
+	
+		
+	
+
+		
+	</data>
+</odoo>

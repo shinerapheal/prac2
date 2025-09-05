@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<!-- Qweb report-->
+	<record id="pet_service_pdf" model="ir.actions.report">
+            <field name="name">Pet Service Report</field>
+            <field name="model">product.template</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">pet_care_management_shine.petservice_report</field>
+            <field name="report_file">pet_care_management_shine.petservice_report</field>
+            <field name="binding_model_id" ref="model_product_template"/>
+            <field name="binding_type">report</field>
+        </record>
+        
+        
+         <record id="pet_xlsx" model="ir.actions.report">
+            <field name="name">Pet Report Xlsx</field>
+            <field name="model">pet.pet</field>
+            <field name="report_type">xlsx</field>
+            <field name="report_name">pet_care_management_shine.pet_report</field>
+            <field name="report_file">pet_care_management_shine..pet_report</field>
+            <field name="binding_model_id" ref="model_pet_pet"/>
+            <field name="binding_type">report</field>
+        </record>
+        
+   
+</odoo>

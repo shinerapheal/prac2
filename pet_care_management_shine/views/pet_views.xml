@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+	
+	
+	
+	
+	<record id="pet_list_view" model="ir.ui.view">
+			<field name="name">pet.list</field>
+			<field name="model">pet.pet</field>
+			<field name="arch" type='xml'>
+				<list>
+					<field name="sequence_number"/>
+						<field name="name" string="Name"/>
+						
+								<field name="species" string="Species"/>
+								<field name="breed" string="Breed"/>
+								<field name="date_of_birth" string="DOB"/>
+								<field name="owner_id" string="Owner" />
+					
+				</list>
+			</field>
+		</record>
+		
+		
+		<record id="pet_form_view" model="ir.ui.view">
+			<field name="name">pet.pet.form</field>
+			<field name="model">pet.pet</field>
+			<field name="arch" type="xml">
+				<form>
+				
+			
+				
+					
+					
+					<sheet>
+					
+						<div class="oe_button_box" name="button_box">
+		            <button name="smart_appoitment"
+		                    type="object"
+		                    class="oe_stat_button"
+		                    icon="fa-users">
+		                <field name="sale_ids" widget="statinfo" string="Appointments" />
+		            </button>
+      		  </div>
+					
+						<group>
+						
+						
+							<group>
+							<div class="oe_title">
+						<h1>
+							<field name="sequence_number" />
+						</h1>
+					</div>
+								
+								<field name="name" string="Name"/>
+								<field name="species" string="Species" />
+								<field name="gender" string="Gender" widget="radio" />
+								<field name="pet_description" string="Pet Description(Medical Cond)"/>
+								
+							
+								
+								
+								
+							</group>
+							
+							<group>
+								<br></br>
+								
+								<br></br>
+							
+								<br></br>
+								<field name="breed" string="Breed"/>
+								<field name="date_of_birth" string="DOB"/>
+								<field name="age" string="Age"/>
+								<field name="owner_id" string="Owner" options="{'no_create': True,'no_create_edit': True}" widget="many2one_tags" domain="[('petowner','=','True')]"/>
+								<field name="pet_weight" string="Pet Weight"/>
+								<field name="active" string="Active" widget="boolean_toggle"/>service_ids
+								<field name="service_ids" string="Services Used" widget="many2many_tags" domain="[('is_pet_service','=','True')]"/>
+							
+							</group>
+							
+						</group>
+				
+					</sheet>
+					<chatter/>
+				</form> 
+			</field>
+
+		</record>
+		
+		
+		
+		
+		<record id="pet_search_view" model="ir.ui.view">
+			<field name="name">pet.pet.search</field>
+			<field name="model">pet.pet</field>
+			<field name="arch" type='xml'>
+				<search>
+						<field name="name" string="Name"/>
+								<field name="species" string="Species"/>
+								<field name="breed" string="Breed"/>
+								<field name="date_of_birth" string="DOB"/>
+								<field name="owner_id" string="Owner" />
+								<filter name="species" string="dog" domain="[('species', '=', 'dog')]"/>
+								<filter name="species" string="cat" domain="[('species', '=', 'cat')]"/>
+								<filter name="group_by_species" string=" Group Species" context="{'group_by':'species'}"/>
+					
+				</search>
+			</field>
+		</record>
+		
+		
+		
+		<record id="pet_pivot_view" model="ir.ui.view">
+					        <field name="name">pet.pet.pivot.view</field>
+					        <field name="model">pet.pet</field>
+					        <field name="arch" type="xml">
+					            <pivot string="Pet Analysis">
+					               
+					                <field name="name" type="row"/>
+					                
+					               
+					                <field name="species" type="col"/>
+					                
+					              
+					               
+					                
+					                
+					            </pivot>
+					        </field>
+					    </record>
+					    
+					    
+					    
+		<record id="pet_calendar_view" model="ir.ui.view">
+					        <field name="name">pet.pet.calendar.view</field>
+					        <field name="model">pet.pet</field>
+					        <field name="arch" type="xml">
+							  <calendar string="calendar" create="0" mode="month" date_start="date_of_birth" color="name" hide_time="true" event_limit="5">
+				                    <field name="name" />
+				                    
+				                    <field name="species" />
+				                     <field name="age" />
+				                      <field name="sale_ids" />
+				                    
+               					 </calendar>
+					        </field>
+					    </record>
+
+	    
+	    
+	    
+	    
+	    
+		<record id="pet_kanban_view" model="ir.ui.view">
+			<field name="name">pet.pet.kanban</field>
+			<field name="model">pet.pet</field>
+			<field name="arch" type='xml'>
+			
+				     <kanban class="o_kanban_mobile" sample="1" quick_create="false">
+	              					 <field name="name" />
+				                    
+				                    <field name="species" />
+				                     <field name="age" />
+				                      <field name="sale_ids" />
+	                
+	                <templates>
+	                    <t t-name="kanban-box">
+	                        <div t-attf-class="oe_kanban_card oe_kanban_global_click">
+	                        
+	                        
+
+	                        
+	                        	<div style="display: flex; justify-content: space-between; align-items: flex-start;">
+    				
+							    <div style="flex: 1; padding-right: 20px;">
+							        <div class="o_kanban_record_headings mt4">
+							            <strong class="o_kanban_record_title">
+							                <span t-out="record.name.value"/>
+							            </strong>
+							        </div>
+							        <div class="o_kanban_top_right" style="font-size: 14px; color: #555;">
+							            <span><t t-out="record.species.value"/></span>
+							        </div>
+							        
+							         <div class="o_kanban_top_right" style="font-size: 14px; color: #555;">
+							            <span><t t-out="record.age.value"/></span>
+							        </div>
+							
+							        <div class="o_kanban_record_bottom" style="margin-top: 8px;">
+							            <div class="oe_kanban_bottom_left text-muted">
+							                <span><t t-out="record.sale_ids.value"/></span>
+							                 
+							            </div>
+							            
+							            
+							            
+							
+						    </div>
+						</div>
+
+	                            
+	                        </div>
+	                        </div>
+	                    </t>
+	                </templates>
+	            </kanban>
+			
+			
+			
+				
+			</field>
+		</record>
+	    
+	    
+
+		
+		<record id="action_pet" model="ir.actions.act_window">
+			<field name="name">Pets </field>
+			<field name="res_model">pet.pet</field>
+			<field name="view_mode">list,form,pivot,calendar,kanban</field>
+			
+		</record> 
+		
+		<record id="action_unactiveall" model="ir.actions.server">
+				            <field name="name">Decativate All</field>
+				            <field name="model_id" ref="model_pet_pet" />
+				            <field name="binding_model_id" ref="model_pet_pet" />
+				            <field name="state">code</field>
+				            <field name="code">
+				                if records:
+				                	action = records.action_decativateaall()
+				            </field>
+				            
+				            
+	
+		 </record>	
+		 
+		 
+		 
+		 <record id="action_unactiveselected" model="ir.actions.server">
+				            <field name="name">Decativate selected</field>
+				            <field name="model_id" ref="model_pet_pet" />
+				            <field name="binding_model_id" ref="model_pet_pet" />
+				            <field name="state">code</field>
+				            <field name="code">
+				                if records:
+				                	action = records.action_decativateselected()
+				            </field>
+				            
+				            
+	
+		 </record>	
+		
+		
+		
+	</data>
+</odoo>
+
+
+
